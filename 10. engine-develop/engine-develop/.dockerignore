@@ -1,0 +1,8 @@
+*.md
+scripts
+banner
+.git
+.github
+.idea
+lib/tools/mac
+lib/tools/win
