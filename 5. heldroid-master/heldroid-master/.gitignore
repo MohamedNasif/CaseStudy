@@ -1,0 +1,17 @@
+.idea/
+apktool-tmp/
+out/
+examined.txt
+diagnostics.csv
+*.iml
+.classpath
+.project
+.gradle
+.settings
+bin
+build
+doc
+/bin/
+.DS_Store
+**/experiments/**/*.apk
+workbench.xmi

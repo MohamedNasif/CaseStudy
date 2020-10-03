@@ -1,0 +1,83 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+	}
+}
+
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+repositories {
+	jcenter()
+		mavenCentral()
+
+		maven {
+			url "https://nexus.bedatadriven.com/content/groups/public/"
+		}
+
+	maven {
+		url "http://clojars.org/repo/"
+	}
+}
+
+mainClassName = 'it.polimi.elet.necst.heldroid.Main'
+
+compileJava {
+	options.encoding = 'UTF-8'
+	options.compilerArgs << "-Xlint:unchecked"
+}
+
+eclipse {
+  classpath {
+    downloadJavadoc = true
+      downloadSources = true
+  }
+}
+
+dependencies {
+  compile files('lib/androidmarketapi-0.6.jar')
+  compile files('lib/axml-2.0.jar')
+  compile files('lib/AXMLPrinter2.jar')
+  compile files('lib/soot-trunk.jar')
+  compile files('lib/soot-infoflow.jar')
+  compile files('lib/soot-infoflow-android.jar')
+
+  compile 'org.slf4j:slf4j-parent:1.7.21'
+  compile 'org.apache.commons:commons-compress:1.12'
+  compile 'jnetpcap:jnetpcap:1.4.r1425-1f'
+  compile 'net.sourceforge.jregex:jregex:1.2_01'
+  compile 'org.json:org.json:2.0'
+  compile 'org.jsoup:jsoup:1.9.1'
+  compile 'net.sf.jwordnet:jwnl:1.4_rc3'
+  compile 'com.cybozu.labs:langdetect:1.1-20120112'
+  compile 'org.apache.opennlp:opennlp-maxent:3.0.2-incubating'
+  compile 'org.apache.opennlp:opennlp-tools:1.6.0'
+  compile 'org.apache.opennlp:opennlp-uima:1.6.0'
+  compile 'com.google.protobuf:protobuf-java:3.0.0'
+  compile 'nz.ac.waikato.cms.weka:weka-stable:3.8.0'
+  compile 'nz.ac.waikato.cms.weka:LibSVM:1.0.9'
+  compile 'net.sourceforge.tess4j:tess4j:3.2.1'
+  compile 'org.languagetool:language-all:3.5'
+}
+
+task showMeCache << {
+  configurations.compile.each { println it }
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/java']
+		}
+		resources {
+			srcDirs = ['src/resources']
+		}
+	}
+}
+
+shadowJar {
+}
